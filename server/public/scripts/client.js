@@ -24,8 +24,8 @@ function sendMath(event) {
 
     let mathObjectCS = {
         number1: $('#number1').val(), 
-        number2: $('#number2').val(),
         operator: setOperator,
+        number2: $('#number2').val(),
         answer: ''
     }
     console.log(mathObjectCS);
@@ -46,12 +46,33 @@ function sendMath(event) {
         url: '/calculation',
         method: 'GET',
       }).then((response) => {
-        console.log('inside GET')
-        arrayCS = response
-        //render();
+        console.log('inside GET');
+        arrayCS = response;
+        console.log(arrayCS);
+        render();
       })
     }
 
+function render(){
+    //remove the old text
+    $('.placeForAnswer').empty(); 
+    $('#placeForHistory').empty();
+
+    // remove input values
+  console.log('in render mf');
+    $('#number1').val('');
+    $('#number2').val('');
+
+
+   for(let mathObject of arrayCS){
+    $('#placeForAnswer').text(`
+      ${mathObject.answer}
+    `)
+    console.log(`${mathObject.number1} ${mathObject.operator} ${mathObject.number2} ${mathObject.answer}`)
+    $('#placeForHistory').append(`
+      <li>${mathObject.number1} ${mathObject.operator} ${mathObject.number2} = ${mathObject.answer} </li>`)
+   };
+};
 
 
 

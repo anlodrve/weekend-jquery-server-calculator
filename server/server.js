@@ -32,9 +32,18 @@ app.get('/calculation', (request, response) => {
     if (object.operator === '+'){
     object.answer = Number(object.number1) + Number(object.number2) 
     }
-  }
+    else if (object.operator === '-'){
+      object.answer = Number(object.number1) - Number(object.number2) 
+    }
+    else if (object.operator === '*'){
+      object.answer = Number(object.number1) * Number(object.number2) 
+    }
+    else if (object.operator === '/'){
+      object.answer = Number(object.number1) / Number(object.number2) 
+    }
 console.log(arraySS);
   response.send(arraySS);
+  };
 })
 
 
