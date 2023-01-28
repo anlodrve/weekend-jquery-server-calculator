@@ -4,23 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <scripts src="./jquery.js"></script>
+    <script src="./jquery.js"></script>
     <script src="scripts/client.js"></script>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/style.css">
     <title>jQuery Server Calculator</title>
 </head>
 <body>
     <div>
-        <form id="formForNumbers">
             <input id="number1" type="number" placeholder="Number 1"/>
+            <button class="operatorButton" value="+">+</button>
+            <button class="operatorButton" value="-">-</button>
+            <button class="operatorButton" value="*">*</button>
+            <button class="opeatorButton" value="/">/</button>
             <input id="number2" type="number" placeholder="Number 2"/>
-            <button class="operatorButton">+</button>
-            <button class="operatorButton">-</button>
-            <button class="operatorButton">*</button>
-            <button class="opeatorButton">/</button>
             <button id="equals">=</button>
             <button id="clear">c</button>
-        </form>
     </div>
     
 </body>

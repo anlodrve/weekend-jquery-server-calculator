@@ -2,16 +2,20 @@ $(document).ready(onReady);
 
 // array on the client side 
 let arrayCS = [];
+// setting global variable for operator
+let setOperator = '';
 
 function onReady() {
     // buttons
-        $('.operatorButton').on('click', setLastOperator);
+        $('.operatorButton').on('click', setOperatorFunction);
         $('#equals').on('click', sendMath);
 }
 
-function setLastOperator(event){
+function setOperatorFunction(event){
+   //put variable in here for operator
     event.preventDefault
-  //put variable in here for .val()
+    setOperator = $(this).attr('value')
+ 
 }
 
 //initial POST -send object to the server 
@@ -21,8 +25,9 @@ function sendMath(event) {
     let mathObjectCS = {
         number1: $('#number1').val(), 
         number2: $('#number2').val(),
-        operator: $('.operatorButton').val()
+        operator: setOperator
     }
+    console.log(mathObjectCS);
 
     $.ajax({
         url: '/calculation',
