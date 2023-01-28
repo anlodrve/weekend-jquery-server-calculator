@@ -55,7 +55,7 @@ function sendMath(event) {
 
 function render(){
     //remove the old text
-    $('.placeForAnswer').empty(); 
+    $('#placeForAnswer').empty(); 
     $('#placeForHistory').empty();
 
     // remove input values

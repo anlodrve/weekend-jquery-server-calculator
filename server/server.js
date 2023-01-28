@@ -42,8 +42,8 @@ app.get('/calculation', (request, response) => {
       object.answer = Number(object.number1) / Number(object.number2) 
     }
 console.log(arraySS);
-  response.send(arraySS);
   };
+  response.send(arraySS);
 })
 
 
