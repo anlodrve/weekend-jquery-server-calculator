@@ -44,7 +44,8 @@ function sendMath(event) {
       }).then((response) => {
     
         getResult();
-      })
+      }).catch((error) => { 
+        console.log(`POST error` )}) 
     } //end sendMath
 
 // handle get requests 
@@ -58,7 +59,8 @@ function sendMath(event) {
         arrayCS = response;
         console.log(arrayCS);
         render();
-      })
+      }).catch((error) => { 
+        console.log(`GET error`)}) 
     }
 
 function render(){
