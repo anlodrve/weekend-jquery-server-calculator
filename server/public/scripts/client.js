@@ -25,7 +25,8 @@ function sendMath(event) {
     let mathObjectCS = {
         number1: $('#number1').val(), 
         number2: $('#number2').val(),
-        operator: setOperator
+        operator: setOperator,
+        answer: ''
     }
     console.log(mathObjectCS);
 
