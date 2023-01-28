@@ -9,19 +9,26 @@ function onReady() {
     // buttons
         $('.operatorButton').on('click', setOperatorFunction);
         $('#equals').on('click', sendMath);
+        $('#clear').on('click', clearInputs);
+}
+
+//  for clear button and for the render reset 
+function clearInputs(){
+  $('#number1').val('');
+  $('#number2').val('');
 }
 
 function setOperatorFunction(event){
    //put variable in here for operator
     event.preventDefault
+    // assign the operator to a variable
     setOperator = $(this).attr('value')
- 
 }
 
-//initial POST -send object to the server 
+// initial POST -send object to the server 
 function sendMath(event) {
     event.preventDefault(); 
-
+  // build out the object to send 
     let mathObjectCS = {
         number1: $('#number1').val(), 
         operator: setOperator,
@@ -29,7 +36,7 @@ function sendMath(event) {
         answer: ''
     }
     console.log(mathObjectCS);
-
+    // ajax to post 
     $.ajax({
         url: '/calculation',
         method: 'POST',
@@ -47,6 +54,7 @@ function sendMath(event) {
         method: 'GET',
       }).then((response) => {
         console.log('inside GET');
+        // put response from server into the Client Side array
         arrayCS = response;
         console.log(arrayCS);
         render();
@@ -60,9 +68,7 @@ function render(){
 
     // remove input values
   console.log('in render mf');
-    $('#number1').val('');
-    $('#number2').val('');
-
+  clearInputs();
 
    for(let mathObject of arrayCS){
     $('#placeForAnswer').text(`
