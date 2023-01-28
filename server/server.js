@@ -4,10 +4,11 @@
 const express = require('express');
 const app = express(); 
 const PORT = 5000;
+// array server side
 const arraySS = [];
 
-// This must be added before GET & POST routes.
-app.use(bodyParser.urlencoded({extended:true}))
+
+app.use(express.urlencoded({extended:true}))
 // static files (HTML, CSS, Client JS)
 app.use(express.static('server/public'));
 
@@ -17,10 +18,15 @@ app.listen(PORT, () => {
 
   //initial server receiving the post
 app.post('/calculation', (request, response) => {
+    console.log('inside post');
     let mathObjectSS = request.body;
     arraySS.push(mathObjectSS); 
 
     response.sendStatus(201);
+})
+
+app.get('/calculation', (request, response) => {
+  response.send(arraySS);
 })
 
 

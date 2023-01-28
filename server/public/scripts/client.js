@@ -1,13 +1,19 @@
 $(document).ready(onReady);
 
+// array on the client side 
 let arrayCS = [];
 
 function onReady() {
     // buttons
+        $('.operatorButton').on('click', setLastOperator);
         $('#equals').on('click', sendMath);
-        $('.operatorButton').on('click', sendMath);
-
 }
+
+function setLastOperator(event){
+    event.preventDefault
+  //put variable in here for .val()
+}
+
 //initial POST -send object to the server 
 function sendMath(event) {
     event.preventDefault(); 
@@ -26,10 +32,20 @@ function sendMath(event) {
     
         getResult();
       })
-    }
-
-    
-
+    } //end sendMath
 
 // handle get requests 
+    function getResult(){
+      $.ajax({
+        url: '/calculation',
+        method: 'GET',
+      }).then((response) => {
+        console.log('inside GET')
+        arrayCS = response
+        //render();
+      })
+    }
+
+
+
 
