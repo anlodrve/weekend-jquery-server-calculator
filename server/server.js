@@ -41,10 +41,10 @@ app.get('/calculation', (request, response) => {
     else if (object.operator === '/'){
       object.answer = Number(object.number1) / Number(object.number2) 
     }
-console.log(arraySS);
+  console.log(arraySS);
   };
   response.send(arraySS);
-})
+});
 
 
 

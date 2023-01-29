@@ -10,15 +10,35 @@
     <title>jQuery Server Calculator</title>
 </head>
 <body>
-    <div>
-            <input id="number1" type="number" placeholder="Number 1"/>
-            <button class="operatorButton" value="+">+</button>
-            <button class="operatorButton" value="-">-</button>
-            <button class="operatorButton" value="*">*</button>
-            <button class="operatorButton" value="/">/</button>
-            <input id="number2" type="number" placeholder="Number 2"/>
-            <button id="equals">=</button>
-            <button id="clear">c</button>
+    <h1>Calculator!</h1>
+    <div id="calculator">
+            <input id="inputField"/><button id="clear">c</button>
+            <div class="buttonRow" id="topRow">
+                <button class="numberButton" value="7">7</button>
+                <button class="numberButton" value="8">8</button>
+                <button class="numberButton" value="9">9</button>
+                <button class="operatorButton" value="+">+</button>
+            </div>
+            <div class="buttonRow" id="thirdRow">
+                <button class="numberButton" value="4">4</button>
+                <button class="numberButton" value="5">5</button>
+                <button class="numberButton" value="6">6</button> 
+                <button class="operatorButton" value="-">-</button>   
+            </div>
+            <div class="buttonRow" id="secondRow">
+                <button class="numberButton" value="1">1</button>
+                <button class="numberButton" value="2">2</button>
+                <button class="numberButton" value="3">3</button>
+                <button class="operatorButton" value="*">*</button>
+            </div>
+            <div class="buttonRow" id="bottomRow">
+                <button class="numberButton" value="0">0</button>
+                <input type="button" id="decimal" value="."/>
+                <button id="equals">=</button>
+                <button class="operatorButton" value="/">/</button>
+            </div>
+
+            
     </div>
     <div class="placeForEverything">
         <h2 id="placeForAnswer"></h2>

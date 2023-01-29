@@ -2,50 +2,88 @@ $(document).ready(onReady);
 
 // array on the client side 
 let arrayCS = [];
-// setting global variable for operator
-let setOperator = '';
+
 
 function onReady() {
     // buttons
-        $('.operatorButton').on('click', setOperatorFunction);
-        $('#equals').on('click', sendMath);
+        $('.buttonRow button').on('click', addInput)
         $('#clear').on('click', clearInputs);
+        $('.operatorButton').on('click', setOperatorFunction);
+        $('#decimal').on('click', addInput);
+        $('#equals').on('click', sendMath);
+}
+
+function addInput(){
+  let buttonValue = $(this).val();
+  let currentInput = $('#inputField').val();
+  let totalInput = currentInput + buttonValue
+
+  $('#inputField').val(totalInput);
+  console.log('this is the total input', totalInput);
+  }
+
+
+function setOperatorFunction(event){
+  //put variable in here for operator
+   event.preventDefault
+   // assign the operator to a variable
+   $('.operatorButton').prop('disabled', true);
 }
 
 //  for clear button and for the render reset 
 function clearInputs(){
-  $('#number1').val('');
-  $('#number2').val('');
-}
-
-function setOperatorFunction(event){
-   //put variable in here for operator
-    event.preventDefault
-    // assign the operator to a variable
-    setOperator = $(this).attr('value')
+  $('.operatorButton').prop('disabled', false);
+  $('#inputField').val('');
 }
 
 // initial POST -send object to the server 
 function sendMath(event) {
     event.preventDefault(); 
   // build out the object to send 
-    let mathObjectCS = {
-        number1: $('#number1').val(), 
-        operator: setOperator,
-        number2: $('#number2').val(),
-        answer: ''
+    
+  let equation = $('#inputField').val();
+  
+  let number1 = '';
+  let operator = '';
+  let number2 = '';
+  let completedNumber1 = false;
+
+  for (i in equation) {
+    if(equation[i]=== '+' || equation[i]=== '-' || equation[i]=== '*' || equation[i]=== '/'){
+      operator = equation[i]; 
+      completedNumber1 = true;
+    }
+    else if (completedNumber1 === true) {
+        number2 += equation[i];
+    } else if(equation[i] === '.' ){
+      number1 += '.'
+    } else if(isNaN(equation[i]) === false) {
+        number1 += equation[i];
+    }
+  }
+  
+  let mathObjectCS = {
+        number1: number1, 
+        operator: operator, 
+        number2: number2 
     }
     console.log(mathObjectCS);
+
+  if(number1 !== '' && operator !== '' && number2 !== ''){
     // ajax to post 
     $.ajax({
         url: '/calculation',
         method: 'POST',
         data: mathObjectCS
       }).then((response) => {
-    
         getResult();
       }).catch((error) => { 
-        console.log(`POST error` )}) 
+        alert('Unable to post data to server')
+        console.log(error)
+      })} else {
+        $('#placeForHistory').empty();
+        $('placeForHistory').text('Invalid Input, please try again.');
+      } // end else 
     } //end sendMath
 
 // handle get requests 
@@ -84,3 +122,9 @@ function render(){
 
 
 
+// function setOperatorFunction(event){
+//   //put variable in here for operator
+//    event.preventDefault
+//    // assign the operator to a variable
+//    setOperator = $(this).attr('value')
+// }
